@@ -1,5 +1,36 @@
 # Laravel + Blade Starter Kit
 
+This is a Dockerised Laravel 12 + Blade starter kit focused for beginner to start explore in developing a web application. Powered with Docker setup to ease the development setup.
+
+## Setup Guide
+
+1. Install Docker Desktop (Windows / Mac) or Docker Engine (Linux).
+2. Ensure docker and docker-compose commands work by running below command in terminal
+
+```
+docker --version
+docker compose version
+```
+
+3. Git clone this repository
+
+```
+git clone https://github.com/nblkmal/larablade-starter-kit.git
+```
+
+4. Change directory to project directory `./larablade-starter-kit`, then run `docker-compose up -d`. You should see something like below
+
+```
+[+] Running 5/5
+ ✔ Network larablade-starter-kit_laravel-network  Created                   0.0s 
+ ✔ Container larablade-starter-kit-database-1     Started                   0.3s 
+ ✔ Container larablade-starter-kit-app-1          Started                   0.3s 
+ ✔ Container larablade-starter-kit-phpmyadmin-1   Started                   0.3s 
+ ✔ Container larablade-starter-kit-web-1          Started                   0.4s 
+ ```
+
+ 5. Open http://localhost:8080 in your browser. Your laravel web app should be accessible
+
 ---
 
 ## Introduction
@@ -15,20 +46,6 @@ Our internal goal at Laravel Daily is to start using this starter kit for our De
 
 **Note:** This is Work in Progress kit, so it will get updates and fixes/features as we go.
 
----
-
-## Screenshots
-
-![](https://laraveldaily.com/uploads/2025/05/LoginPage.png)
-
-![](https://laraveldaily.com/uploads/2025/05/RegisterPage.png)
-
-![](https://laraveldaily.com/uploads/2025/05/DashboardPage.png)
-
-![](https://laraveldaily.com/uploads/2025/05/ProfilePage.png)
-
----
-
 ## What is Inside?
 
 Inside you will find all the functions that you would expect:
@@ -43,18 +60,6 @@ Inside you will find all the functions that you would expect:
     - Profile Information Page
     - Password Update Page
     - Appearance Preferences
-
----
-
-## How to use it?
-
-To use this kit, you can install it using:
-
-```bash
-laravel new --using=laraveldaily/starter-kit
-```
-
-From there, you can modify the kit to your needs.
 
 ---
 
