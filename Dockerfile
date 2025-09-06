@@ -18,6 +18,10 @@ RUN apt-get update && apt-get install -y \
 # Install Composer
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
+# Install Node.js 20
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
+
 # Copy existing app files
 COPY . .
 
@@ -27,6 +31,9 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 
 # Install PHP dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
+# Install JS dependencies and build assets
+RUN npm install && npm run build
 
 # Expose port (not needed unless debugging directly)
 EXPOSE 9000
