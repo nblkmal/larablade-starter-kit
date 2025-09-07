@@ -33,42 +33,121 @@ git clone https://github.com/nblkmal/larablade-starter-kit.git
 
 ---
 
-## Introduction
+# Student Registration System - Product Requirements Document (PRD)
 
-Our Laravel 12 + Blade starter kit provides the typical functionality found in the Laravel Starter kits, but with a few key differences:
+## 1. Project Overview
 
-- A CoreUI/AdminLTE inspired design layout
-- Blade + AlpineJS code
+### 1.1 Purpose
+Develop a basic student registration system
 
-This kit aims to fill the gap where there is no simple **Blade only** starter kit available.
+### 1.2 Scope
+**Phase 1 (MVP)**: Student Profile Management System
+- Create and manage student profiles
+- Basic student information storage and retrieval
+- Simple registration workflow
 
-Our internal goal at Laravel Daily is to start using this starter kit for our Demo applications, to avoid overwhelming our audience with Vue/Livewire/React if we had used one of the official Laravel 12 starter kits.
+**Future Phases**: Course enrollment, grades management, academic records, etc.
 
-**Note:** This is Work in Progress kit, so it will get updates and fixes/features as we go.
+### 1.3 Target Users
+- **Primary**: School administrators, registrars
+- **Secondary**: Students (view-only access to their profiles)
 
-## What is Inside?
+## 2. Current System Analysis
 
-Inside you will find all the functions that you would expect:
+### 2.1 Existing Infrastructure
+- **Framework**: Laravel 12 with Blade templating
+- **Database**: MySQL 8.0 (Dockerized)
+- **Authentication**: Laravel Breeze (Login, Registration, Password Reset)
+- **UI Framework**: CoreUI/AdminLTE inspired design
+- **Frontend**: Blade + AlpineJS
+- **Containerization**: Docker with nginx, PHP-FPM, MySQL, phpMyAdmin
 
-- Authentication
-    - Login
-    - Registration
-    - Password Reset Flow
-    - Email Confirmation Flow
-- Dashboard Page
-- Profile Settings
-    - Profile Information Page
-    - Password Update Page
-    - Appearance Preferences
+### 2.2 Available Features
+- User authentication system
+- Dashboard with sidebar navigation
+- Profile management (settings)
+- Responsive design
+- Database migrations and seeders
 
----
+## 3. Student Profile Model Requirements
 
-## Design Elements
+### 3.1 Core Student Information Fields
 
-If you want to see examples of what design elements we have, you can [visit the Wiki](<https://github.com/LaravelDaily/starter-kit/wiki/Design-Examples-(Raw-Files)>) and see the raw HTML files.
+#### Personal Information
+- **student_id** (string, unique) - Auto-generated student ID (e.g., STU-2024-001)
+- **first_name** (string, required)
+- **last_name** (string, required)
+- **middle_name** (string, optional)
+- **date_of_birth** (date, required)
+- **gender** (enum: male, female, other, required)
+- **nationality** (string, required)
+- **phone_number** (string, optional)
+- **email** (string, unique, required)
+- **address** (text, required)
+- **city** (string, required)
+- **state_province** (string, required)
+- **postal_code** (string, required)
+- **country** (string, required)
 
----
+#### Academic Information
+- **enrollment_date** (date, required)
+- **academic_year** (string, required) - e.g., "2024-2025"
+- **program_of_study** (string, required) - e.g., "Computer Science", "Business Administration"
+- **year_level** (enum: freshman, sophomore, junior, senior, graduate, required)
+- **student_status** (enum: active, inactive, graduated, suspended, required)
+- **gpa** (decimal, optional) - Current GPA
 
-## Licence
+#### Emergency Contact
+- **emergency_contact_name** (string, required)
+- **emergency_contact_relationship** (string, required) - e.g., "Parent", "Guardian", "Sibling"
+- **emergency_contact_phone** (string, required)
+- **emergency_contact_email** (string, optional)
 
-Starter kit is open-sourced software licensed under the MIT license.
+### 3.2 Data Validation Rules
+- Email must be unique across all students
+- Student ID must be auto-generated and unique
+- Date of birth must be valid and reasonable (not future, not too old)
+- Phone numbers must follow international format
+- GPA must be between 0.0 and 4.0 (if provided)
+
+## 4. Functional Requirements
+
+### 4.1 Student Registration Workflow
+1. **Registration Form**: Multi-step form for student information
+2. **Data Validation**: Real-time validation of form fields
+3. **Account Creation**: Automatic user account creation
+4. **Profile Creation**: Student profile creation with provided information
+5. **Confirmation**: Email confirmation and welcome message
+
+### 4.2 Student Profile Management
+1. **View Profile**: Display complete student information
+2. **Edit Profile**: Allow updates to student information
+3. **Search Students**: Search by name, student ID, email, or program
+4. **List Students**: Paginated list with filtering options
+
+### 4.3 Administrative Functions
+1. **Student Dashboard**: Overview of student statistics
+2. **Bulk Operations**: Import/export student data
+3. **Reports**: Generate student reports (enrollment, demographics)
+
+## 5. Technical Requirements
+
+### 5.1 Database Design
+```sql
+-- Students table (extends users)
+students:
+- id (primary key)
+- user_id (foreign key to users)
+- student_id (unique string)
+- first_name, last_name, middle_name
+- date_of_birth, gender, nationality
+- phone_number, email, address fields
+- academic information fields
+- emergency contact fields
+- timestamps
+```
+
+**Document Version**: 1.0  
+**Last Updated**: [Current Date]  
+**Next Review**: [Date + 2 weeks]
+
