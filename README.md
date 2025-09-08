@@ -18,7 +18,9 @@ docker compose version
 git clone https://github.com/nblkmal/larablade-starter-kit.git
 ```
 
-4. Change directory to project directory `./larablade-starter-kit`, then run `docker-compose up -d`. You should see something like below
+4. Change directory to project directory `./larablade-starter-kit`
+5. Run `cp .env.example .env` -> to initialize the .env
+6. Run `docker-compose up -d`. You should see something like below :-
 
 ```
 [+] Running 5/5
@@ -29,7 +31,9 @@ git clone https://github.com/nblkmal/larablade-starter-kit.git
  ✔ Container larablade-starter-kit-web-1          Started                   0.4s 
  ```
 
- 5. Open http://localhost:8080 in your browser. Your laravel web app should be accessible
+7. Run `docker exec -it larablade-app php artisan key:generate` -> to generate .env key
+8. Open http://localhost:8080 in your browser. Your laravel web app should be accessible
+
 
 ---
 
