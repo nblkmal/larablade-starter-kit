@@ -22,15 +22,18 @@ COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs
 
-# Copy existing app files
-COPY . .
-
 # Set permissions for Laravel
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
+# Copy composer files
+COPY composer.json composer.lock ./
+
 # Install PHP dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
+# Copy existing app files
+COPY . .
 
 # Install JS dependencies and build assets
 RUN npm install && npm run build

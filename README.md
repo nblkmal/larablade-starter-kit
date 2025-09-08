@@ -20,6 +20,7 @@ git clone https://github.com/nblkmal/larablade-starter-kit.git
 
 4. Change directory to project directory `./larablade-starter-kit`
 5. Run `cp .env.example .env` -> to initialize the .env
+6. Run `composer install`
 6. Run `docker-compose up -d`. You should see something like below :-
 
 ```
