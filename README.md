@@ -26,10 +26,10 @@ git clone https://github.com/nblkmal/larablade-starter-kit.git
 ```
 [+] Running 5/5
  ✔ Network larablade-starter-kit_laravel-network  Created                   0.0s 
- ✔ Container larablade-starter-kit-database-1     Started                   0.3s 
- ✔ Container larablade-starter-kit-app-1          Started                   0.3s 
- ✔ Container larablade-starter-kit-phpmyadmin-1   Started                   0.3s 
- ✔ Container larablade-starter-kit-web-1          Started                   0.4s 
+ ✔ Container larablade-database                   Started                   0.3s 
+ ✔ Container larablade-app                        Started                   0.3s 
+ ✔ Container larablade-phpmyadmin                 Started                   0.3s 
+ ✔ Container larablade-web                        Started                   0.3s 
  ```
 
 7. Run `docker exec -it larablade-app php artisan key:generate` -> to generate .env key
