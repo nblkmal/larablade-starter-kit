@@ -21,25 +21,20 @@ git clone https://github.com/nblkmal/larablade-starter-kit.git
 
 4. Change directory to project directory `./larablade-starter-kit`
 5. Run `cp .env.example .env` -> to initialize the .env
-6. Run `composer install`
 6. Run `./vendor/bin/sail up -d`. You should see something like below :-
 
 ```
 ./vendor/bin/sail up -d
 
-[+] Running 8/8
- ✔ Network larablade-starter-kit_laravel-network  Created                0.1s 
- ✔ Volume "larablade-starter-kit_sail-mysql"      Created                0.0s 
- ✔ Volume "larablade-starter-kit_sail-redis"      Created                0.0s 
- ✔ Container larablade-database                   Started                0.2s 
- ✔ Container larablade-cache                      Started                0.2s 
- ✔ Container larablade-app                        Started                0.3s 
- ✔ Container larablade-phpmyadmin                 Started                0.3s 
- ✔ Container larablade-web                        Started                0.4s
+[+] Running 2/2
+ ✔ Container mysql             Started                                0.1s 
+ ✔ Container laravel.test      Started                                0.1s
  ```
 
-7. Run `docker exec -it larablade-app php artisan key:generate` -> to generate .env key
-8. Open http://localhost:8080 in your browser. Your laravel web app should be accessible
+7. Run `./vendor/bin/sail artisan key:generate` -> to set web application APP_KEY
+8. Run `./vendor/bin/sail artisan migrate` -> to run database migration
+9. Run `./vendor/bin/sail npm install && npm run build` -> to compile frontend assets.
+8. Open http://localhost:80 in your browser. Your laravel web app should be accessible
 
 
 ---
